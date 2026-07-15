@@ -44,3 +44,30 @@ SiliconVision/
 ├── scripts/                # Build Automation
 │   └── build_sim.sh            # Verilator compilation script
 └── test_images/            # Sample inputs for simulation
+```
+## Environment and Dependencies
+Preferred Operating System: Linux (Ubuntu/Debian) is the highly preferred and native environment for this project due to its seamless integration with Verilator and GNU Make.
+
+For Windows Users: It is strongly recommended to run this project via WSL2 (Windows Subsystem for Linux) rather than attempting a native Windows MSYS2/MinGW port. WSL provides the exact Linux toolchain required for Verilator to compile the structural Verilog correctly.
+
+## Installation Commands (Ubuntu / Debian / WSL)
+Before building the project, you must install the required hardware simulation and image processing libraries. Open your terminal and run:
+```text
+sudo apt-get update
+sudo apt-get install -y verilator libopencv-dev libjpeg-dev build-essential pkg-config
+```
+## 🚀 Build and Run Guide
+The project features a streamlined bash script that automatically compiles the Verilog RTL into C++ models, links the OpenCV and libjpeg libraries, and boots the CLI application.
+1. Clone the repository:
+   ```text
+   git clone [https://github.com/Rishi-Kolkundkar/SiliconVision-RTL.git](https://github.com/Rishi-Kolkundkar/SiliconVision-RTL.git)
+   cd SiliconVision-RTL
+   ```
+2. Make the build script executable:
+    ```text
+     chmod +x scripts/build_sim.sh
+   ```
+3. Compile the SoC and boot the CLI:
+    ```text
+     ./scripts/build_sim.sh
+   ```
