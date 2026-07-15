@@ -1,0 +1,15 @@
+# Verilator build directory
+obj_dir/
+
+# Compiled executables
+*.exe
+*.out
+*.o
+
+# Output images generated during testing
+output_*.png
+output_*.jpg
+output_*.bmp
+
+# OS generated files
+.DS_Store
