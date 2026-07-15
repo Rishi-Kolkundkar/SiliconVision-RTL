@@ -13,3 +13,17 @@ output_*.bmp
 
 # OS generated files
 .DS_Store
+
+# Vivado auto-generated files
+*.jou
+*.log
+*.str
+*.pb
+*.wdb
+.Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.xpr

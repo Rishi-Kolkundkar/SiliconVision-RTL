@@ -122,7 +122,7 @@ module kernel_edge (
     wire [15:0] y2y[2:0];
 
     //Gy
-    //row 0
+     //row 0
     pe_conv #(.w(-8'sd1)) p00y (
         .CLK(CLK),
         .AR(AR),
