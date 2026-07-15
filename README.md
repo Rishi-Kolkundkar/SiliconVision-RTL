@@ -26,6 +26,19 @@ This architecture embraces **Time-Multiplexing**. Instead of wasting FPGA silico
 5. **Floyd-Steinberg Dithering:** A strictly causal error-diffusion engine. To bypass multi-write BRAM bottlenecks, this core utilizes a custom **3-stage sliding-window shift register** and a dedicated Line Buffer, allowing 1-pixel-per-clock processing.
 
 ---
+## 🔌 Physical FPGA Deployment (Synthesis)
+
+While the `main` branch is dedicated to Verilator simulation and C++ Co-design, physical FPGA synthesis has been successfully implemented for the **Sobel Edge Detector** core. 
+
+To maintain a clean, bloat-free repository, all physical implementation files (Xilinx/Vivado) are isolated on a dedicated deployment branch. This branch utilizes **Tcl scripting** for project recreation rather than uploading bloated `.xpr` project files, adhering strictly to industry standards for Electronic Design Automation (EDA) version control.
+
+### Accessing the Hardware Branch
+To view the physical constraints (`.xdc`), synthesis-ready Verilog, and the automated Vivado build scripts, fetch and check out the deployment branch:
+
+```bash
+git fetch origin
+git checkout fpga-deployment
+```
 
 ## 📂 Repository Structure
 
@@ -71,3 +84,4 @@ The project features a streamlined bash script that automatically compiles the V
     ```text
      ./scripts/build_sim.sh
    ```
+    
