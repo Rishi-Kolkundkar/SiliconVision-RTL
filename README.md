@@ -5,7 +5,7 @@
 ![Verilator](https://img.shields.io/badge/Simulation-Verilator-orange.svg)
 ![OpenCV](https://img.shields.io/badge/Library-OpenCV_4-green.svg)
 
-SiliconVision is a cycle-accurate Hardware/Software Co-design project that implements a custom System-on-Chip (SoC) for high-performance image processing. The hardware is written in structural and behavioral Verilog, simulated via **Verilator**, and orchestrated by a unified C++ host application acting as a pseudo-DMA controller. 
+SiliconVision is a cycle-accurate Hardware/Software Co-design project that implements a custom System-on-Chip (SoC) for hardware image processing. The hardware is written in structural and behavioral Verilog, simulated via **Verilator**, and orchestrated by a unified C++ host application acting as a pseudo-DMA controller, for faster simulations as Icarus Verilog is natively slow and doesn't support image file like JPG/PNG. 
 
 Rather than relying on software libraries for pixel manipulation, the C++ host decodes image data and streams it into the simulated dual-port BRAM, allowing the RTL to handle the heavy mathematical workloads.
 
@@ -22,7 +22,7 @@ This architecture embraces **Time-Multiplexing**. Instead of wasting FPGA silico
 1. **Gaussian Blur (2D Systolic Array):** A spatial convolution engine utilizing a 2D window for low-pass filtering.
 2. **Sobel Edge Detector (2D Systolic Array):** Hardware gradient magnitude calculation for high-frequency feature extraction.
 3. **Histogram Equalizer:** A multi-stage pipeline utilizing internal block RAM for PDF/CDF calculation and dynamic contrast stretching.
-4. **JPEG Compressor (2D Systolic Array):** A highly optimized 64-node systolic mesh that computes the 2D Discrete Cosine Transform (DCT). It maps mathematical coefficients directly into libjpeg's Huffman encoding buffers for true hardware compression.
+4. **JPEG Compressor (2D Systolic Array):** An optimized 64-node systolic mesh that computes the 2D Discrete Cosine Transform (DCT). It maps mathematical coefficients directly into libjpeg's Huffman encoding buffers for true hardware compression.
 5. **Floyd-Steinberg Dithering:** A strictly causal error-diffusion engine. To bypass multi-write BRAM bottlenecks, this core utilizes a custom **3-stage sliding-window shift register** and a dedicated Line Buffer, allowing 1-pixel-per-clock processing.
 
 ---
@@ -30,10 +30,10 @@ This architecture embraces **Time-Multiplexing**. Instead of wasting FPGA silico
 
 While the `main` branch is dedicated to Verilator simulation and C++ Co-design, physical FPGA synthesis has been successfully implemented for the **Sobel Edge Detector** core. 
 
-To maintain a clean, bloat-free repository, all physical implementation files (Xilinx/Vivado) are isolated on a dedicated deployment branch. This branch utilizes **Tcl scripting** for project recreation rather than uploading bloated `.xpr` project files, adhering strictly to industry standards for Electronic Design Automation (EDA) version control.
+To maintain a clean, bloat-free repository, all physical implementation files (Xilinx/Vivado) are isolated on a dedicated deployment branch.
 
 ### Accessing the Hardware Branch
-To view the physical constraints (`.xdc`), synthesis-ready Verilog, and the automated Vivado build scripts, fetch and check out the deployment branch:
+To view the physical constraints (`.xdc`), synthesis-ready Verilog, and the Vivado build scripts, fetch and check out the deployment branch:
 
 ```bash
 git fetch origin
@@ -52,8 +52,8 @@ SiliconVision/
 │   ├── dither_hw.v         # Error Diffusion Core
 │   ├── jpeg_encoder_hw.v   # JPEG/DCT Top Module
 │   └── *.v                 # Sub-modules (Quantizer, PE matrices, etc.)
-├── host/                   # C++ Software Driver
-│   └── main_sim.cpp            # Host CLI and DMA orchestrator
+├── host/                   # C++ Software Driver (A simulation aide)
+│   └── main_sim.cpp            # Host CLI
 ├── scripts/                # Build Automation
 │   └── build_sim.sh            # Verilator compilation script
 └── test_images/            # Sample inputs for simulation
