@@ -73,7 +73,7 @@ sudo apt-get install -y verilator libopencv-dev libjpeg-dev build-essential pkg-
 The project features a streamlined bash script that automatically compiles the Verilog RTL into C++ models, links the OpenCV and libjpeg libraries, and boots the CLI application.
 1. Clone the repository:
    ```text
-   git clone [https://github.com/Rishi-Kolkundkar/SiliconVision-RTL.git](https://github.com/Rishi-Kolkundkar/SiliconVision-RTL.git)
+   git clone https://github.com/Rishi-Kolkundkar/SiliconVision-RTL.git
    cd SiliconVision-RTL
    ```
 2. Make the build script executable:
