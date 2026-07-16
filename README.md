@@ -85,3 +85,10 @@ The project features a streamlined bash script that automatically compiles the V
      ./scripts/build_sim.sh
    ```
     
+### ⚠️ Important Note on Target Images
+When changing the target image in the CLI (Option `[6]`), you must provide the relative path from the root directory and include the exact file extension. 
+
+Since all sample images are stored in the `test_images/` directory, your input should follow this format:
+`test_images/your_image.jpg` 
+
+*(Note: Linux file paths are strictly case-sensitive. Ensure the capitalization of the file name and extension matches exactly, e.g., `face.JPG` vs `low.jpg`).*
