@@ -272,7 +272,7 @@ void run_dither(Vsv_soc* top, const std::string& filename) {
 int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
     Vsv_soc* top = new Vsv_soc;
-    std::string target = "test_images/test_image.jpg";
+    std::string target = "test_images/test_image.png";
 
     while (true) {
         std::cout << "\n" << C_MAGENTA << "==========================================================" << C_RESET << "\n";
