@@ -11,14 +11,22 @@ rm -rf obj_dir
 
 echo -e "\033[36m[System] Compiling SiliconVision RTL Suite...\033[0m"
 
-verilator -Wall -Wno-WIDTHEXPAND -Wno-WIDTHTRUNC -Wno-PINCONNECTEMPTY -Wno-DECLFILENAME -Wno-GENUNNAMED -Wno-UNUSEDSIGNAL -Wno-PINMISSING \
+verilator -Wall -Wno-WIDTHEXPAND -Wno-WIDTHTRUNC -Wno-PINCONNECTEMPTY -Wno-PINMISSING -Wno-DECLFILENAME -Wno-GENUNNAMED -Wno-UNUSEDSIGNAL \
+    -y rtl/ \
     --cc \
     rtl/sv_soc.v \
     rtl/sys_array_blur.v \
     rtl/sys_array_edge.v \
     rtl/hist_eq.v \
     rtl/dither_hw.v \
-    rtl/jpeg_encoder_hw.v rtl/rgb_ycbcr.v rtl/quantizer.v rtl/kernel_row_dct.v rtl/pe_dct.v rtl/sys_matrix.v rtl/reg.v rtl/skew_buff.v \
+    rtl/jpeg_encoder_hw.v \
+    rtl/rgb_ycbcr.v \
+    rtl/quantizer.v \
+    rtl/kernel_row_dct.v \
+    rtl/pe_dct.v \
+    rtl/sys_matrix.v \
+    rtl/reg.v \
+    rtl/skew_buff.v \
     --top-module sv_soc \
     --exe host/main_sim.cpp \
     -CFLAGS "$(pkg-config --cflags opencv4) -O3" \
