@@ -26,6 +26,22 @@ This architecture embraces **Time-Multiplexing**. Instead of wasting FPGA silico
 5. **Floyd-Steinberg Dithering:** A strictly causal error-diffusion engine. To bypass multi-write BRAM bottlenecks, this core utilizes a custom **3-stage sliding-window shift register** and a dedicated Line Buffer, allowing 1-pixel-per-clock processing.
 
 ---
+## 📚 Academic References & Literature
+
+The hardware architectures, systolic arrays, and DSP algorithms implemented in SiliconVision were heavily informed by the following academic literature. I highly recommend these papers for a deeper understanding of the mathematics and implementation used in this project:
+
+1. **[Hyesook Lim and Earl E. S wartdander, Jr. ]** "An efficient systolic array for the discrete cosine transform based on prime-factor decomposition", 1995. 
+   🔗 [DCT-Systolic-Arrays](https://ieeexplore.ieee.org/document/528936)
+
+2. **[H.T. Kung]** "Why Systolic Architectures?" , 1982. 
+   🔗 [Systolic-Architectures](https://ieeexplore.ieee.org/document/1653825)
+
+3. **[H.T Kung and S.W Song]** "A Systolic 2-D Convolution Chip", 1982. 
+   🔗 [Systolic-Convolution-Chip](https://www.eecs.harvard.edu/~htk/publication/1982-multi-computer-and-image-processing-kung-song.pdf)
+4.  **[Michael Dushkoff and Vineeta Singh]** "Hardware Implementation of Floyd-Steinberg Halftoning Algorithm", 2014. 
+   🔗 [ Floyd-Steinberg-Dithering](http://vineetasingh.net/docs/FloydSteinbergPaper.pdf)
+
+---
 ## 🔌 Physical FPGA Deployment (Synthesis)
 
 While the `main` branch is dedicated to Verilator simulation and C++ Co-design, physical FPGA synthesis has been successfully implemented for the **Sobel Edge Detector** core. 
@@ -44,7 +60,7 @@ git checkout fpga-deployment
 
 ```text
 SiliconVision/
-├── rtl/                    # Verilog Hardware IP Cores
+├── rtl/                    # Verilog Hardware Cores
 │   ├── sv_soc.v            # Top-level SoC Multiplexer
 │   ├── sys_array_blur.v    # Spatial Convolution Core
 │   ├── sys_array_edge.v    # Gradient Magnitude Core
